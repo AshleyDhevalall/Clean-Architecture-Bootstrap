@@ -7,12 +7,11 @@ namespace WebApplication.Tests
     public class TestControllerTests
     {
         private TestController ctrl;
-        private ILogger<TestController> logger;
 
         [SetUp]
         public void Setup()
         {
-            ctrl = new TestController(logger);
+            ctrl = new TestController();
         }
 
         [Test]

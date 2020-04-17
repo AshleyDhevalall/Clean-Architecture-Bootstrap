@@ -7,11 +7,8 @@ namespace WebApplication.Controllers
     [Route("[controller]")]
     public class TestController : ControllerBase
     {
-        private readonly ILogger<TestController> _logger;
-
-        public TestController(ILogger<TestController> logger)
+        public TestController()
         {
-            _logger = logger;
         }
 
         [HttpGet]

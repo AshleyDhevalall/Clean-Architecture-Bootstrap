@@ -88,18 +88,17 @@
       "WebApplication.Controllers.TestController": {
         "System.String WebApplication.Controllers.TestController::Get(System.String)": {
           "Lines": {
-            "19": 1,
-            "20": 1,
-            "21": 1
+            "16": 1,
+            "17": 1,
+            "18": 1
           },
           "Branches": []
         },
-        "System.Void WebApplication.Controllers.TestController::.ctor(Microsoft.Extensions.Logging.ILogger`1<WebApplication.Controllers.TestController>)": {
+        "System.Void WebApplication.Controllers.TestController::.ctor()": {
           "Lines": {
-            "12": 1,
-            "13": 1,
-            "14": 1,
-            "15": 1
+            "10": 1,
+            "11": 1,
+            "12": 1
           },
           "Branches": []
         }
