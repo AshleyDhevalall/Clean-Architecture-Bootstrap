@@ -1,5 +1,5 @@
 # Dotnet powershell build script
-This project aims to ensure that your project meets the `Code Quality and Security` standards available in SonarQube.
+This project aims to ensure that your project adheres to the `Code Quality and Security` standards available in SonarQube.
 
 ### Prerequisites
 * Dotnet core sdk 3.1 
