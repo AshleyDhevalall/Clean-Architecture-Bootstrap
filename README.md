@@ -1,6 +1,35 @@
 # Dotnet build script
 This project aims to ensure that your project meets the `Code Quality and Security` standards available in SonarQube.
 
+### Prerequisites
+* Dotnet core sdk 3.1 
+* SonarQube server
+* C# solution
+
+### Usage
+* Download and copy the core-build.ps1 script to your solution folder.
+
+## Getting the Source
+
+This project is hosted on [GitHub](https://github.com/AshleyDhevalall/Dotnet-QA-Build-Script). You can clone this project directly using this command:https://github.com/AshleyDhevalall/Dotnet-QA-Build-Script
+```
+git clone https://github.com/AshleyDhevalall/Dotnet-QA-Build-Script.git
+```
+
+## Authors
+
+[Ashley Dhevalall](https://github.com/AshleyDhevalall)
+
+## Acknowledgements
+
+* [SonarQube](<http://nunit.org>)
+* [Coverlet](<https://github.com/gurock/testrail-api>)
+
+## License
+
+MIT License
+
+Copyright (c) 2019 AshleyDhevalall
 
 
 How is this accomplished?
