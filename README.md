@@ -1,4 +1,4 @@
-# Dotnet powerhell build script
+# Dotnet powershell build script
 This project aims to ensure that your project meets the `Code Quality and Security` standards available in SonarQube.
 
 ### Prerequisites
