@@ -11,7 +11,7 @@ This project aims to ensure that your project meets the `Code Quality and Securi
 
 ## Getting the Source
 
-This project is hosted on [GitHub](https://github.com/AshleyDhevalall/Dotnet-QA-Build-Script). You can clone this project directly using this command:https://github.com/AshleyDhevalall/Dotnet-QA-Build-Script
+This project is hosted on [GitHub](https://github.com/AshleyDhevalall/Dotnet-QA-Build-Script). You can clone this project directly using this command:
 ```
 git clone https://github.com/AshleyDhevalall/Dotnet-QA-Build-Script.git
 ```
