@@ -1,1 +1,0 @@
-C:\Projects\Dotnet-QA-Build-Script\src\.sonarqube\out\1
