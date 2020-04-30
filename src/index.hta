@@ -1,0 +1,105 @@
+<!doctype html>
+<META HTTP-EQUIV="Expires" CONTENT="0">
+<html class="no-js" lang="">
+   <head>
+      <meta charset="utf-8">
+	  <meta http-equiv="x-ua-compatible" content="ie=9" />
+      <title>Clean Architecture Bootstrap</title>
+	  <HTA:APPLICATION 
+			 APPLICATIONNAME="Clean Architecture Bootstrap"
+			 SCROLL="yes"
+			 SINGLEINSTANCE="yes"
+			 WINDOWSTATE="maximize"
+			 scroll="no"
+		scrollFlat="yes"
+		innerBorder="no"
+		/>
+      <meta name="description" content="">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link rel="manifest" href="site.webmanifest">
+      <link rel="apple-touch-icon" href="icon.png">
+      <!-- Place favicon.ico in the root directory -->
+      <link rel="stylesheet" href="css/normalize.css">
+      <link rel="stylesheet" href="css/main.css">
+      <meta name="theme-color" content="#fafafa">
+	  <meta http-equiv="x-ua-compatible" content="ie=9" />
+	  <script language="vbscript">
+		sub cmdBtn_CreateProject()		
+            Set objShell = CreateObject("WScript.Shell")		
+			objShell.run("powershell.exe -executionpolicy bypass -noexit -command .\new-project.ps1")
+			end sub
+			
+		sub cmdBtn_Build()			
+			Set objShell = CreateObject("WScript.Shell")
+			objShell.run("powershell.exe -executionpolicy bypass -noexit -command .\core-build.ps1")
+			end sub
+			
+		sub cmdBtn_StartSonarQube()
+			Set objShell = CreateObject("WScript.Shell")
+            objShell.run("powershell.exe -executionpolicy bypass -noexit -command .\start-sonarqube-docker.ps1")
+			end sub
+			
+		sub cmdBtn_StopSonarQube()
+			Set objShell = CreateObject("WScript.Shell")
+            objShell.run("powershell.exe -executionpolicy bypass -noexit -command .\stop-sonarqube-docker.ps1")
+			end sub
+			
+		sub cmdBtn_RunTests()
+			Set objShell = CreateObject("WScript.Shell")
+            objShell.run("powershell.exe -executionpolicy bypass -noexit -command .\core-unit-tests.ps1")
+			end sub
+		</script>
+      <style type="text/css">
+         #flexbox {
+			 display: box;
+			 box-orient: horizontal;
+			 font-family: segoe ui;Tahoma;
+			 padding-left: 60px;
+         }
+		 
+		 input { 
+			font-family: segoe ui;Tahoma;
+		 }
+		 
+		 input text { 
+		 	width:400px;
+			display:inline-block;
+		 }
+		 
+		 select {
+		 	width:200px;
+			font-family: segoe ui;Tahoma;
+		 }
+		 
+		 label {
+			width:200px;
+			display:inline-block
+		}
+      </style>
+   </head>
+   <body>  
+      <div id="flexbox">
+		 <p>&nbsp;</p>
+	     <h2>Clean Architecture Bootstrap</h2>	 
+         <h3>Project</h3>
+         <p><label for="pjname" style="display:inline-block">Name *</label><input type="text" id="pjname" name="pjname" required /></p>
+		 <p><input type="button" onclick="cmdBtn_CreateProject()" value="Create project"></input></p><p>&nbsp;</p>
+		 <h3>Build</h3>		 
+         <p><label for="configuration">Configuration</label><select id="configuration"><option value="release">Release</option><option value="debug">Debug</option></select></p>
+		 <p><label for="verbosity">Verbosity</label><select id="verbosity"><option value="release">Quiet</option><option value="debug">Minimal</option><option value="debug">Normal</option><option value="debug">Detailed</option><option value="debug">Diagnostic</option></select></p>
+		 <p><label for="verbosity">Restore</label><select id="verbosity"><option value="release">Yes</option><option value="debug">No</option></select></p>
+		 <p><label for="verbosity">Runtime</label><select id="verbosity"><option value="release">Ubuntu 18.04</option><option value="debug">Windows</option></select></p>
+		 <p><label for="logfolder" style="display:inline-block">Log Folder *</label><input type="text" id="logfolder" name="logfolder" value="Logs" required /></p>
+		 <p><input type="button" onclick="cmdBtn_Build()" value="Build"</input></p><p>&nbsp;</p>
+         <h3>Quality and Security</h3>	
+		 <p><label for="sonarurl">SonarQube server *</label><input type="text" id="sonarurl" name="sonarurl" required value="http://localhost:9000" /></p>
+         <p><label for="apikey">API Key *</label><input type="password" id="apikey" name="apikey" value="ASDFG-789789-fsf" required />
+		 <p><input type="button" onclick="cmdBtn_StartSonarQube()" value="Start SonarQube"</input>&nbsp;&nbsp;&nbsp;<input type="button" onclick="cmdBtn_StopSonarQube()" value="Stop SonarQube"></input></p><p>&nbsp;</p>
+		 <h3>Testing</h3>
+		 <p><label for="no-build">Build Project</label><select id="configuration"><option value="yes">Yes</option><option value="no">No</option></select></p>
+		 <p><label for="sonarurl">Coverage format</label><select id="configuration"><option value="coberutura">Coberuta</option><option value="jacoco">JaCoco</option></select></p>
+		 <p><label for="sonarurl">Results folder</label><input type="text" id="results" name="results" required value="TestResults" /></p>
+		 <p><input type="button" onclick="cmdBtn_RunTests()" value="Run tests"</input></p><p>&nbsp;</p>
+      </div>
+   </body>
+</html>
