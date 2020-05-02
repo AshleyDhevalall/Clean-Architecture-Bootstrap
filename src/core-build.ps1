@@ -10,14 +10,18 @@
 		Example of how to run the script.
 #>   
 [CmdletBinding()]
-param()
+param ([string] $useSonar="Yes")
 
 if (Test-Path ./logs) {	Remove-Item ./logs -Recurse -Force }
 
-dotnet tool install --global dotnet-sonarscanner
-dotnet sonarscanner begin /d:sonar.login=admin /d:sonar.password=admin /k:"WebApplication" 
+if ($useSonar -eq "Yes") {
+  dotnet tool install --global dotnet-sonarscanner
+  dotnet sonarscanner begin /d:sonar.login=admin /d:sonar.password=admin /k:"WebApplication" 
+}
 
 $MyScript = 'dotnet build ./SampleApi /flp:v=diag /flp:logfile="logs/build.log"'
 Invoke-Expression -Command $MyScript
 
-dotnet sonarscanner end /d:sonar.login=admin /d:sonar.password=admin
+if ($useSonar -eq "Yes") {
+  dotnet sonarscanner end /d:sonar.login=admin /d:sonar.password=admin
+}

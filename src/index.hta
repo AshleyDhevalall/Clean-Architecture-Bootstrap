@@ -1,37 +1,99 @@
-<!doctype html>
-<META HTTP-EQUIV="Expires" CONTENT="0">
-<html class="no-js" lang="">
-   <head>
-      <meta charset="utf-8">
-	  <meta http-equiv="x-ua-compatible" content="ie=9" />
-      <title>Clean Architecture Bootstrap</title>
-	  <HTA:APPLICATION 
-			 APPLICATIONNAME="Clean Architecture Bootstrap"
-			 SCROLL="yes"
-			 SINGLEINSTANCE="yes"
-			 WINDOWSTATE="maximize"
-			 scroll="no"
-		scrollFlat="yes"
-		innerBorder="no"
-		/>
-      <meta name="description" content="">
-      <meta name="viewport" content="width=device-width, initial-scale=1">
-      <link rel="manifest" href="site.webmanifest">
-      <link rel="apple-touch-icon" href="icon.png">
-      <!-- Place favicon.ico in the root directory -->
-      <link rel="stylesheet" href="css/normalize.css">
-      <link rel="stylesheet" href="css/main.css">
-      <meta name="theme-color" content="#fafafa">
-	  <meta http-equiv="x-ua-compatible" content="ie=9" />
-	  <script language="vbscript">
+<!-- <!DOCTYPE html> -->
+<html>
+ <meta http-equiv="x-ua-compatible" content="ie=9" />
+ <title>Clean Architecture Bootstrap</title>
+<head>
+
+<HTA:APPLICATION 
+		 APPLICATIONNAME="Clean Architecture Bootstrap"
+		 SINGLEINSTANCE="yes"
+		 WINDOWSTATE="normal"
+		 BORDERSTYLE="normal"
+		 scroll="yes"
+		 innerBorder="yes"
+	/>
+<style type="text/css">
+		html {
+		  color: #222;
+		  font-size: 0.75em;
+		  font-family: segoe ui;Tahoma;
+		  line-height: 1.4;
+		}
+
+		.runbutton {
+			-webkit-appearance: push-button;
+			border: 1px solid;			
+			font-family: segoe ui;
+			border-color: #A9A9A9;
+			font-size: 1em;
+        }
+		
+		 #flexbox {
+			 display: box;
+			 box-orient: horizontal;
+			
+			 padding-left: 60px;
+			 border: 1px solid;
+			 border-color: #A9A9A9;
+         }
+		 
+		 .mytext {
+			font-family: segoe ui;Tahoma;
+			border: 1px solid #A9A9A9;
+			border-color: #A9A9A9;			
+			border-width: 1px;
+			font-size: 1em;
+		 }
+		 
+		 input text { 
+			font-family: segoe ui;Tahoma;
+			border: 1px solid;			
+			border-color: grey;			
+			border-width: 1px;		
+		}
+		 
+		 select {
+		 	width:200px;
+			font-family: segoe ui;Tahoma;
+			border-color: #A9A9A9;
+			border-width: 1px;
+			font-size: 1em;
+		 }
+		 
+		 /*For IE*/
+		select::-ms-expand { display: none; }
+		 
+		 label {
+			width:200px;
+			display:inline-block
+		}
+
+</style>
+
+<Script type="text/vbscript"> ' language="VBscript">
+		ResizeTo 750, 910 
+		moveTo 0, 0
+		
 		sub cmdBtn_CreateProject()		
+		
+			Set fso = CreateObject("Scripting.FileSystemObject")
+			Set shl = CreateObject("WScript.Shell")
+
+			path="C:\Projects\sample\SampleApi" 
+			exists = fso.FolderExists(path)
+
+			if (exists) then 
+				MsgBox("Folder exists!")
+				Exit Sub
+			end if		
+		
             Set objShell = CreateObject("WScript.Shell")		
 			objShell.run("powershell.exe -executionpolicy bypass -noexit -command .\new-project.ps1")
 			end sub
 			
 		sub cmdBtn_Build()			
-			Set objShell = CreateObject("WScript.Shell")
-			objShell.run("powershell.exe -executionpolicy bypass -noexit -command .\core-build.ps1")
+			Set objShell = CreateObject("WScript.Shell")			
+			objShell.run("powershell.exe -executionpolicy bypass -command .\core-build.ps1 -useSonar No")
 			end sub
 			
 		sub cmdBtn_StartSonarQube()
@@ -48,58 +110,41 @@
 			Set objShell = CreateObject("WScript.Shell")
             objShell.run("powershell.exe -executionpolicy bypass -noexit -command .\core-unit-tests.ps1")
 			end sub
-		</script>
-      <style type="text/css">
-         #flexbox {
-			 display: box;
-			 box-orient: horizontal;
-			 font-family: segoe ui;Tahoma;
-			 padding-left: 60px;
-         }
-		 
-		 input { 
-			font-family: segoe ui;Tahoma;
-		 }
-		 
-		 input text { 
-		 	width:400px;
-			display:inline-block;
-		 }
-		 
-		 select {
-		 	width:200px;
-			font-family: segoe ui;Tahoma;
-		 }
-		 
-		 label {
-			width:200px;
-			display:inline-block
-		}
-      </style>
-   </head>
-   <body>  
-      <div id="flexbox">
-		 <p>&nbsp;</p>
-	     <h2>Clean Architecture Bootstrap</h2>	 
-         <h3>Project</h3>
-         <p><label for="pjname" style="display:inline-block">Name *</label><input type="text" id="pjname" name="pjname" required /></p>
-		 <p><input type="button" onclick="cmdBtn_CreateProject()" value="Create project"></input></p><p>&nbsp;</p>
-		 <h3>Build</h3>		 
+			
+		sub cmdBtn_ViewReport()
+			CreateObject("WScript.Shell").Run """.\Report\index.htm"""
+			end sub
+
+</Script>
+
+</head>
+
+<body>
+
+<div id="flexbox">
+	     <h2 style="color:#0020C2">Clean Architecture Bootstrap</h2>	
+		 <form>
+         <h4 style="color:#0020C2">Project</h4>
+         <p><label for="pjname" style="display:inline-block">Name *</label><input class="mytext" type="text" id="pjname" name="pjname" required /></p>
+		 <p><input class=runbutton type="button" value="Create project" onClick="cmdBtn_CreateProject()"></input></p><p>&nbsp;</p>
+		 </form>
+		 <h4 style="color:#0020C2">Build</h4>		 
          <p><label for="configuration">Configuration</label><select id="configuration"><option value="release">Release</option><option value="debug">Debug</option></select></p>
 		 <p><label for="verbosity">Verbosity</label><select id="verbosity"><option value="release">Quiet</option><option value="debug">Minimal</option><option value="debug">Normal</option><option value="debug">Detailed</option><option value="debug">Diagnostic</option></select></p>
 		 <p><label for="verbosity">Restore</label><select id="verbosity"><option value="release">Yes</option><option value="debug">No</option></select></p>
 		 <p><label for="verbosity">Runtime</label><select id="verbosity"><option value="release">Ubuntu 18.04</option><option value="debug">Windows</option></select></p>
-		 <p><label for="logfolder" style="display:inline-block">Log Folder *</label><input type="text" id="logfolder" name="logfolder" value="Logs" required /></p>
-		 <p><input type="button" onclick="cmdBtn_Build()" value="Build"</input></p><p>&nbsp;</p>
-         <h3>Quality and Security</h3>	
-		 <p><label for="sonarurl">SonarQube server *</label><input type="text" id="sonarurl" name="sonarurl" required value="http://localhost:9000" /></p>
-         <p><label for="apikey">API Key *</label><input type="password" id="apikey" name="apikey" value="ASDFG-789789-fsf" required />
-		 <p><input type="button" onclick="cmdBtn_StartSonarQube()" value="Start SonarQube"</input>&nbsp;&nbsp;&nbsp;<input type="button" onclick="cmdBtn_StopSonarQube()" value="Stop SonarQube"></input></p><p>&nbsp;</p>
-		 <h3>Testing</h3>
+		 <p><label for="verbosity">Use Sonar scanner</label><select id="verbosity"><option value="release">Yes</option><option value="debug">No</option></select></p>
+		 <p><label for="logfolder" style="display:inline-block">Log Folder *</label><input class="mytext" type="text" id="logfolder" name="logfolder" value="Logs" required /></p>
+		 <p><input class=runbutton type="button" onclick="cmdBtn_Build()" value="Build"</input></p><p>&nbsp;</p>
+         <h4 style="color:#0020C2">Quality and Security</h4>	
+		 <p><label for="sonarurl">SonarQube server *</label><input type="text" class="mytext" id="sonarurl" name="sonarurl" required value="http://localhost:9000" /></p>
+         <p><label for="apikey">API Key *</label><input type="password" class="mytext" id="apikey" name="apikey" value="ASDFG-789789-fsf" required />
+		 <p><input class=runbutton type="button" onclick="cmdBtn_StartSonarQube()" value="Start SonarQube"</input>&nbsp;&nbsp;&nbsp;<input class=runbutton type="button" onclick="cmdBtn_StopSonarQube()" value="Stop SonarQube"></input></p><p>&nbsp;</p>
+		 <h4 style="color:#0020C2">Testing</h4>
 		 <p><label for="no-build">Build Project</label><select id="configuration"><option value="yes">Yes</option><option value="no">No</option></select></p>
 		 <p><label for="sonarurl">Coverage format</label><select id="configuration"><option value="coberutura">Coberuta</option><option value="jacoco">JaCoco</option></select></p>
-		 <p><label for="sonarurl">Results folder</label><input type="text" id="results" name="results" required value="TestResults" /></p>
-		 <p><input type="button" onclick="cmdBtn_RunTests()" value="Run tests"</input></p><p>&nbsp;</p>
+		 <p><label for="sonarurl">Results folder</label><input class="mytext" type="text" id="results" name="results" required value="TestResults" /></p>
+		 <p><input class=runbutton type="button" onclick="cmdBtn_RunTests()" value="Run tests"</input>&nbsp;&nbsp;&nbsp;<input class=runbutton type="button" onclick="cmdBtn_ViewReport()" value="View report"</input></p><p>&nbsp;</p>
       </div>
-   </body>
+</body>
 </html>

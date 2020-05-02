@@ -34,8 +34,15 @@
 param()
 
 dotnet tool install --global coverlet.console
+dotnet tool install --global dotnet-reportgenerator-globaltool
 
-if (Test-Path ./TestResults) {	Remove-Item ./TestResults -Recurse -Force }
+# create the testresults folder
+$TestResultFolder = (Get-Location).Path + '\TestResults\'
+New-Item -Path $TestResultFolder -ItemType Directory -Force
 
-$MyScript = 'dotnet test ./SampleApi --logger "trx;LogFilePath=results.trx" --results-directory "./TestResults" --verbosity n /p:CollectCoverage=true /p:CoverletOutputFormat=cobertura /p:Exclude="[xunit*]\*" /p:CoverletOutput="../TestResults/"'
-Invoke-Expression -Command $MyScript	
+$ReportFolder = (Get-Location).Path + '\Report'
+
+$MyScript = "dotnet test ./SampleApi /p:CollectCoverage=true /p:CoverletOutputFormat=cobertura /p:CoverletOutput=$TestResultFolder"
+Invoke-Expression -Command $MyScript
+
+ReportGenerator "-reports:C:\Projects\sample\TestResults\coverage.cobertura.xml" "-targetdir:$ReportFolder"
