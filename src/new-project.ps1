@@ -31,9 +31,10 @@
 		Detail on what the script does, if this is needed.
 #>
 [CmdletBinding()]
+param ([string] $name)
 
 $solutionPath = $PSScriptRoot
-$solutionName = "SampleApi"
+$solutionName = $name
 New-Item -Path $solutionPath -Name $solutionName -ItemType "directory" -Force
 $path = Join-Path $solutionPath $solutionName
 Set-Location -Path $path

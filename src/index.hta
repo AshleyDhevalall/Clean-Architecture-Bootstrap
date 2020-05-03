@@ -70,50 +70,94 @@
 
 </style>
 
-<Script type="text/vbscript"> ' language="VBscript">
+<Script type="text/vbscript">
 		ResizeTo 750, 910 
 		moveTo 0, 0
 		
-		sub cmdBtn_CreateProject()		
-		
+		'############################################################################### 
+		'# Name: cmdBtn_CreateProject 
+		'# Purpose: Capture and set def to folder where this HTA exists. 
+		'############################################################################### 
+		sub cmdBtn_CreateProject()	
+			pjName = document.getElementById("pjname").value			
+			
+			If Len(pjName) = 0 Then				
+				MsgBox "Please enter a project name"
+				document.getElementById("pjname").Focus()	
+				Exit Sub
+			End If			
+			
+			Dim sCurPath 
+			sCurPath = CreateObject("Scripting.FileSystemObject").GetAbsolutePathName(".")			
+			fullPath = sCurPath & "\" & pjName				
+			
 			Set fso = CreateObject("Scripting.FileSystemObject")
 			Set shl = CreateObject("WScript.Shell")
-
-			path="C:\Projects\sample\SampleApi" 
-			exists = fso.FolderExists(path)
-
-			if (exists) then 
-				MsgBox("Folder exists!")
-				Exit Sub
-			end if		
 		
+			folderExists = fso.FolderExists(fullPath)
+			if (folderExists = true) then 
+				MsgBox "Project already exists"	
+				Exit Sub			
+			End If
+			
             Set objShell = CreateObject("WScript.Shell")		
-			objShell.run("powershell.exe -executionpolicy bypass -noexit -command .\new-project.ps1")
-			end sub
+			objShell.run("powershell.exe -executionpolicy bypass -noexit -command .\new-project.ps1")			
+		end sub
 			
+		'############################################################################### 
+		'# Name: cmdBtn_Build 
+		'# Purpose: Capture and set def to folder where this HTA exists. 
+		'############################################################################### 
 		sub cmdBtn_Build()			
-			Set objShell = CreateObject("WScript.Shell")			
-			objShell.run("powershell.exe -executionpolicy bypass -command .\core-build.ps1 -useSonar No")
-			end sub
-			
+			Set objShell = CreateObject("WScript.Shell")	
+
+			pjName = document.getElementById("pjname").value				
+			Dim sCurPath 
+			sCurPath = CreateObject("Scripting.FileSystemObject").GetAbsolutePathName(".")			
+			fullPath = sCurPath & "\" & pjName							
+			objShell.run("powershell.exe -executionpolicy bypass -noexit -command .\core-build.ps1 -useSonar No -projectDir " & fullPath & " -config Release -verbosity diag -runtime test -logFolder logs")
+		end sub
+		
+		'############################################################################### 
+		'# Name: cmdBtn_StartSonarQube 
+		'# Purpose: Capture and set def to folder where this HTA exists. 
+		'############################################################################### 
 		sub cmdBtn_StartSonarQube()
 			Set objShell = CreateObject("WScript.Shell")
             objShell.run("powershell.exe -executionpolicy bypass -noexit -command .\start-sonarqube-docker.ps1")
-			end sub
+		end sub
 			
+		'############################################################################### 
+		'# Name: cmdBtn_StopSonarQube 
+		'# Purpose: Capture and set def to folder where this HTA exists. 
+		'############################################################################### 
 		sub cmdBtn_StopSonarQube()
 			Set objShell = CreateObject("WScript.Shell")
             objShell.run("powershell.exe -executionpolicy bypass -noexit -command .\stop-sonarqube-docker.ps1")
-			end sub
+		end sub
 			
+		'############################################################################### 
+		'# Name: cmdBtn_RunTests 
+		'# Purpose: Capture and set def to folder where this HTA exists. 
+		'############################################################################### 
 		sub cmdBtn_RunTests()
-			Set objShell = CreateObject("WScript.Shell")
-            objShell.run("powershell.exe -executionpolicy bypass -noexit -command .\core-unit-tests.ps1")
-			end sub
+			Set objShell = CreateObject("WScript.Shell")			
+            objShell.run("powershell.exe -executionpolicy bypass -noexit -command .\core-unit-tests.ps1 -testFolder TestResults -format Cobertura -build Yes -pjName SampleApi")
+		end sub
 			
+		'############################################################################### 
+		'# Name: cmdBtn_ViewReport 
+		'# Purpose: Capture and set def to folder where this HTA exists. 
+		'############################################################################### 
 		sub cmdBtn_ViewReport()
-			CreateObject("WScript.Shell").Run """.\Report\index.htm"""
-			end sub
+		
+			Set fso = CreateObject("Scripting.FileSystemObject")		
+			If fso.FileExists(".\Report\index.htm") Then
+			  CreateObject("WScript.Shell").Run """.\Report\index.htm"""
+			Else
+			  MsgBox "No report exists"
+			End If
+		end sub
 
 </Script>
 

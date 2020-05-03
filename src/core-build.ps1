@@ -10,7 +10,7 @@
 		Example of how to run the script.
 #>   
 [CmdletBinding()]
-param ([string] $useSonar="Yes")
+param ([string] $useSonar="Yes", [string] $projectDir, [string] $config, [string] $verbosity, [string] $runtime, [string] $logFolder)
 
 if (Test-Path ./logs) {	Remove-Item ./logs -Recurse -Force }
 
@@ -19,7 +19,7 @@ if ($useSonar -eq "Yes") {
   dotnet sonarscanner begin /d:sonar.login=admin /d:sonar.password=admin /k:"WebApplication" 
 }
 
-$MyScript = 'dotnet build ./SampleApi /flp:v=diag /flp:logfile="logs/build.log"'
+$MyScript = 'dotnet build $projectDir /flp:v=$Verbosity /flp:logfile="$logFolder/build.log"'
 Invoke-Expression -Command $MyScript
 
 if ($useSonar -eq "Yes") {

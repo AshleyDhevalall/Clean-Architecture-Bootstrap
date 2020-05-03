@@ -31,18 +31,18 @@
 		Detail on what the script does, if this is needed.
 #>
 [CmdletBinding()]
-param()
+param([string] $testFolder, [string] $format, [string] $build, [string] $pjName)
 
 dotnet tool install --global coverlet.console
 dotnet tool install --global dotnet-reportgenerator-globaltool
 
 # create the testresults folder
-$TestResultFolder = (Get-Location).Path + '\TestResults\'
+$TestResultFolder = (Get-Location).Path + '\$testFolder\'
 New-Item -Path $TestResultFolder -ItemType Directory -Force
 
 $ReportFolder = (Get-Location).Path + '\Report'
 
-$MyScript = "dotnet test ./SampleApi /p:CollectCoverage=true /p:CoverletOutputFormat=cobertura /p:CoverletOutput=$TestResultFolder"
+$MyScript = "dotnet test ./$pjName /p:CollectCoverage=true /p:CoverletOutputFormat=$format /p:CoverletOutput=$TestResultFolder"
 Invoke-Expression -Command $MyScript
 
 ReportGenerator "-reports:C:\Projects\sample\TestResults\coverage.cobertura.xml" "-targetdir:$ReportFolder"
