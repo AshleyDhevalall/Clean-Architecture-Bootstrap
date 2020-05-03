@@ -27,6 +27,13 @@ This project aims to ensure that your project adheres to the `Code Quality and S
 * Unit test
 * sonar scanner
 
+## TODO
+* Use label for errors instead of message boxes
+* Add icon
+* Better error handling
+* Option to toggle window exit
+* Docker features
+
 ## Getting the Source
 
 This project is hosted on [GitHub](https://github.com/AshleyDhevalall/Dotnet-QA-Build-Script). You can clone this project directly using this command:
