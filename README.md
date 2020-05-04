@@ -7,6 +7,7 @@ This project enables developers to bootstrap the project creation process by mak
 * SonarQube server / Docker Desktop for MAC or Windows, if not running on Linux OS platform
 * SonarQube docker image
 * OWASP Zap docker image
+* Node.js (6 or later)
 
 ### Usage
 * Download and copy the core-build.ps1 script to your solution folder
