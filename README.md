@@ -39,7 +39,7 @@ This project enables developers to bootstrap the project creation process by mak
 
 ## Getting the Source
 
-This project is hosted on [GitHub](https://github.com/AshleyDhevalall/Dotnet-QA-Build-Script). You can clone this project directly using this command:
+This project is hosted on [GitHub](https://github.com/AshleyDhevalall/Clean-Architecture-Bootstrap). You can clone this project directly using this command:
 ```
 git clone https://github.com/AshleyDhevalall/Clean-Architecture-Bootstrap
 ```
