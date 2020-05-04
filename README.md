@@ -1,9 +1,12 @@
-# Dotnet powershell build script
-This project aims to ensure that your project adheres to the `Code Quality and Security` standards available in SonarQube.
+# Clean Architecture Bootstrap
+This project enables developers to bootstrap the project creation process by making use of the Clean Architecture Solution Template. The project includes tools that ensure that your project conform to the `Code Quality and Security` standards available in SonarQube.
 
 ### Prerequisites
-* Dotnet core sdk 3.1 
+* Clean Architecture with .NET Core
+* Dotnet core sdk 3.1
 * SonarQube server / Docker Desktop for MAC or Windows, if not running on Linux OS platform
+* SonarQube docker image
+* OWASP Zap docker image
 
 ### Usage
 * Download and copy the core-build.ps1 script to your solution folder
@@ -25,7 +28,7 @@ This project aims to ensure that your project adheres to the `Code Quality and S
 ### Generates the following html reports
 * Code coverage
 * Unit test
-* sonar scanner
+* Sonar scanner
 
 ## TODO
 * Use label for errors instead of message boxes
