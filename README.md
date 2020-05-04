@@ -51,7 +51,7 @@ git clone https://github.com/AshleyDhevalall/Clean-Architecture-Bootstrap
 
 ## Acknowledgements
 
-* [Clean Architecture with .NET Core: Getting Started](https://jasontaylor.dev/clean-architecture-getting-started/)
+* [Jason Taylor](https://jasontaylor.dev/clean-architecture-getting-started/)
 * [SonarQube](<http://nunit.org>)
 * [Coverlet](<https://github.com/gurock/testrail-api>)
 
