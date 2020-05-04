@@ -41,7 +41,7 @@ This project enables developers to bootstrap the project creation process by mak
 
 This project is hosted on [GitHub](https://github.com/AshleyDhevalall/Dotnet-QA-Build-Script). You can clone this project directly using this command:
 ```
-git clone https://github.com/AshleyDhevalall/Dotnet-QA-Build-Script.git
+git clone https://github.com/AshleyDhevalall/Clean-Architecture-Bootstrap
 ```
 
 ## Authors
@@ -50,6 +50,7 @@ git clone https://github.com/AshleyDhevalall/Dotnet-QA-Build-Script.git
 
 ## Acknowledgements
 
+* [Clean Architecture with .NET Core: Getting Started(https://jasontaylor.dev/clean-architecture-getting-started/)
 * [SonarQube](<http://nunit.org>)
 * [Coverlet](<https://github.com/gurock/testrail-api>)
 
