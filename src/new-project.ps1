@@ -32,7 +32,7 @@
 #>
 [CmdletBinding()]
 param ([string] $name)
-
+dotnet new --install Clean.Architecture.Solution.Template
 $solutionPath = $PSScriptRoot
 $solutionName = $name
 New-Item -Path $solutionPath -Name $solutionName -ItemType "directory" -Force
