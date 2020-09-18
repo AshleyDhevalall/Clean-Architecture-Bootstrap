@@ -8,7 +8,7 @@ The project enables developers to bootstrap the project creation process by maki
 * SonarQube server
 
 ### Usage
-1. Follow the [Getting started](https://github.com/jasontaylordev/CleanArchitecture#getting-started)
+1. [Create your clean architecture solution](https://github.com/jasontaylordev/CleanArchitecture#getting-started)
 
 2. Download and copy the core-build.ps1 script to your solution folder
 
