@@ -1,18 +1,44 @@
 # Clean Architecture Bootstrap
-This project enables developers to bootstrap the project creation process by making use of the Clean Architecture Solution Template. The project includes tools that ensure that your project conform to the `Code Quality and Security` standards available in SonarQube.
+The project enables developers to bootstrap the project creation process by making use of the Clean Architecture Solution Template by Jason Taylor. The project aims to build on the bootstrap process by providing powershell scripts for building, executing unit tests with code coverage reports and ensuring that your solution conforms to the `Code Quality and Security` standards available in SonarQube.
 
 ### Prerequisites
-* Clean Architecture with .NET Core
-* Dotnet core sdk 3.1
-* SonarQube server / Docker Desktop for MAC or Windows, if not running on Linux OS platform
-* SonarQube docker image
-* OWASP Zap docker image
+* .NET Core SDK (3.1 or later)
 * Node.js (6 or later)
+* Clean Architecture with .NET Core
+* SonarQube server
 
 ### Usage
-* Download and copy the core-build.ps1 script to your solution folder
-* Create a new file named build.ps1 in your solution folder
-* The content of the folder should look like build.ps1
+1. Check the .NET Core version by running this command:
+```
+dotnet --list-sdks
+```
+
+2. Check the node version by running this command:
+```
+node -v
+```
+
+3. Next, install the solution template using this command:
+```
+dotnet new --install Clean.Architecture.Solution.Template
+```
+
+4. Create a new solution
+Creating a new solution is easy. Within an empty folder, run the following command:
+```
+dotnet new ca-sln
+```
+The following message will be displayed:
+
+The template "Clean Architecture Solution" was created successfully.
+
+This command will create a new solution, automatically namespaced using the name of the parent folder. For example, if the parent folder is named Northwind, then the solution will be named Northwind.sln, and the default namespace will be Northwind.
+
+The solution is built using the Angular project template with ASP.NET Core. The ASP.NET Core project provides an API back end and the Angular CLI project provides the UI.
+
+5. Download and copy the core-build.ps1 script to your solution folder
+6. Create a new file named build.ps1 in your solution folder
+   * The content of the folder should look like build.ps1
 
 #### Test projects
 * The script assumes that test projects end with *test
@@ -30,13 +56,6 @@ This project enables developers to bootstrap the project creation process by mak
 * Code coverage
 * Unit test
 * Sonar scanner
-
-## TODO
-* Use label for errors instead of message boxes
-* Add icon
-* Better error handling
-* Option to toggle window exit
-* Docker features
 
 ## Getting the Source
 
