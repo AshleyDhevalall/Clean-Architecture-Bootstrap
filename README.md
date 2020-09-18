@@ -1,5 +1,5 @@
 # Clean Architecture Bootstrap
-The project enables developers to bootstrap the project creation process by making use of the Clean Architecture Solution Template by Jason Taylor. The project aims to build on the bootstrap process by providing powershell scripts for building, executing unit tests with code coverage reports and ensuring that your solution conforms to the `Code Quality and Security` standards available in SonarQube.
+The project enables developers to bootstrap the project creation process by making use of the [Clean Architecture Solution Template](https://jasontaylor.dev/clean-architecture-getting-started/) by [Jason Taylor](https://jasontaylor.dev/). The project aims to build on the bootstrap process by providing powershell scripts for building, executing unit tests with code coverage reports and ensuring that your solution conforms to the `Code Quality and Security` standards available in SonarQube.
 
 ### Prerequisites
 * .NET Core SDK (3.1 or later)
@@ -8,36 +8,11 @@ The project enables developers to bootstrap the project creation process by maki
 * SonarQube server
 
 ### Usage
-1. Check the .NET Core version by running this command:
-```
-dotnet --list-sdks
-```
+1. Follow the [Getting started](https://github.com/jasontaylordev/CleanArchitecture#getting-started)
 
-2. Check the node version by running this command:
-```
-node -v
-```
+2. Download and copy the core-build.ps1 script to your solution folder
 
-3. Next, install the solution template using this command:
-```
-dotnet new --install Clean.Architecture.Solution.Template
-```
-
-4. Create a new solution
-Creating a new solution is easy. Within an empty folder, run the following command:
-```
-dotnet new ca-sln
-```
-The following message will be displayed:
-
-The template "Clean Architecture Solution" was created successfully.
-
-This command will create a new solution, automatically namespaced using the name of the parent folder. For example, if the parent folder is named Northwind, then the solution will be named Northwind.sln, and the default namespace will be Northwind.
-
-The solution is built using the Angular project template with ASP.NET Core. The ASP.NET Core project provides an API back end and the Angular CLI project provides the UI.
-
-5. Download and copy the core-build.ps1 script to your solution folder
-6. Create a new file named build.ps1 in your solution folder
+3. Create a new file named build.ps1 in your solution folder
    * The content of the folder should look like build.ps1
 
 #### Test projects
